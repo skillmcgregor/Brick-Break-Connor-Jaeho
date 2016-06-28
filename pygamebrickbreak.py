@@ -10,7 +10,7 @@ pygame.mixer.music.load("dundertale.mp3")
 pygame.mixer.music.play(-1,0)
 
 size = width,height = 600,1000
-speed = [5,5]
+speed = [0,0]
 pspeed = [0,0]
 black = (70, 70, 70)
 red = (255, 0, 0)
@@ -56,7 +56,6 @@ for i in range(6):
 		breaklist[i][j] = random.randint(1, 5)
 		if j < 9:
 			breaklist[i][j] = 1
-
  
 while True:
 	for event in pygame.event.get():
@@ -64,16 +63,37 @@ while True:
 			sys.exit()
 		if event.type == pygame.KEYDOWN:
 			if event.key == pygame.K_RIGHT:
-				pspeed = [pspeed[0] + 5, pspeed[1]]
+				if speed[:] == pspeed[:]:
+					pspeed = [pspeed[0] + 5, pspeed[1]]
+					speed[:] = pspeed[:]
+				else:
+					pspeed = [pspeed[0] + 5, pspeed[1]]
 		if event.type == pygame. KEYUP:
 			if event.key == pygame.K_RIGHT:
-				pspeed = [0,0]
+				if speed[:] == pspeed[:]:
+					pspeed = [0,0]
+					speed[:] = pspeed[:]
+				else:
+					pspeed = [0,0]
 		if event.type == pygame.KEYDOWN:
 			if event.key == pygame.K_LEFT:
-				pspeed = [pspeed[0] - 5, pspeed[1]]
+				if speed[:] == pspeed[:]:
+					pspeed = [pspeed[0] - 5, pspeed[1]]
+					speed[:] = pspeed[:]
+				else:
+					pspeed = [pspeed[0] - 5, pspeed[1]]
 		if event.type == pygame.KEYUP:
 			if event.key == pygame.K_LEFT:
-				pspeed = [0,0]
+				if speed[:] == pspeed[:]:
+					pspeed = [0,0]
+					speed[:] = pspeed[:]
+				else:
+					pspeed = [0,0]
+		if event.type == pygame.KEYDOWN:
+			if event.key == pygame.K_SPACE:
+				if speed[:] == pspeed[:]:
+					speed = [5,5]
+
 	if (pygame.time.get_ticks() - lasttime > 10):
 		ballrect = ballrect.move(speed)
 		lasttime = pygame.time.get_ticks() #Update the timer so that it happens again in another 100 ticks
