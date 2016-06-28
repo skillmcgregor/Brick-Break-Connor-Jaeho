@@ -8,10 +8,6 @@ pygame.mixer.init()
 pygame.mixer.pre_init(22000, 16, 2, 2049)
 pygame.mixer.music.load("dundertale.mp3")
 pygame.mixer.music.play(-1,0)
-#pygame.mixer.init()
-#pygame.mixer.pre_init(44100, -16, 2, 2048)
-#pygame.mixer.music.load('midi.midi')
-#pygame.mixer.music.play()
 
 size = width,height = 600,1000
 speed = [5,5]
