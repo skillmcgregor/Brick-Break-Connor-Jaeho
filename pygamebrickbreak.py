@@ -64,12 +64,14 @@ while True:
 		if event.type == pygame.KEYDOWN:
 			if event.key == pygame.K_RIGHT:
 				if speed[:] == pspeed[:]:
-					pspeed = [pspeed[0] + 5, pspeed[1]]
+					pspeed = [5, pspeed[1]]
 					speed[:] = pspeed[:]
 				else:
-					pspeed = [pspeed[0] + 5, pspeed[1]]
-		if event.type == pygame. KEYUP:
+					pspeed = [5, pspeed[1]]
+		if event.type == pygame.KEYUP:
 			if event.key == pygame.K_RIGHT:
+				if pspeed[0] == -5:
+					continue
 				if speed[:] == pspeed[:]:
 					pspeed = [0,0]
 					speed[:] = pspeed[:]
@@ -78,12 +80,14 @@ while True:
 		if event.type == pygame.KEYDOWN:
 			if event.key == pygame.K_LEFT:
 				if speed[:] == pspeed[:]:
-					pspeed = [pspeed[0] - 5, pspeed[1]]
+					pspeed = [-5, pspeed[1]]
 					speed[:] = pspeed[:]
 				else:
-					pspeed = [pspeed[0] - 5, pspeed[1]]
+					pspeed = [-5, pspeed[1]]
 		if event.type == pygame.KEYUP:
 			if event.key == pygame.K_LEFT:
+				if pspeed[0] == 5:
+					continue
 				if speed[:] == pspeed[:]:
 					pspeed = [0,0]
 					speed[:] = pspeed[:]
