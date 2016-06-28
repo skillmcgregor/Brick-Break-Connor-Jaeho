@@ -16,12 +16,12 @@ pygame.mixer.music.play()
 size = width,height = 600,1000
 speed = [5,5]
 pspeed = [0,0]
-black = (50, 50, 50)
+black = (70, 70, 70)
 red = (255, 0, 0)
 green = (0, 255, 0)
 blue = (0, 0, 255)
 purple = (153, 102, 255)
-ggreen = (17, 51, 0)
+ggreen = (102, 255, 204)
 gyul = (255, 153, 51)
 pink = (255, 204, 255)
 
@@ -57,8 +57,9 @@ for i in range(6):
 breaklist = [[1 for x in range(20)] for y in range(6)]
 for i in range(6):
 	for j in range(20):
-		if j > 9:
-			breaklist[i][j] = 0
+		breaklist[i][j] = random.randint(1, 5)
+		if j < 9:
+			breaklist[i][j] = 1
 
  
 while True:
