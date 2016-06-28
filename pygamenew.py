@@ -16,9 +16,15 @@ white = (25,247,244)
 screen = pygame.display.set_mode(size)
 
 ball = pygame.image.load("ball.png")
-paddle = pygame.image.load("rectang.png")
-pygame.transform.scale(ball(100,100))
+ball = pygame.transform.scale(ball,(30,30))
 ballrect = ball.get_rect()
+
+
+
+paddle = pygame.image.load("rectang.png")
+
+
+
 paddlerect = paddle.get_rect()
 lasttime = 0
 lasttime2 = 0
@@ -30,9 +36,15 @@ while True:
 		if event.type == pygame.KEYDOWN:
 			if event.key == pygame.K_RIGHT:
 				pspeed = [pspeed[0] + 5, pspeed[1]]
+		if event.type == pygame. KEYUP:
+			if event.key == pygame.K_RIGHT:
+				pspeed = [0,0]
 		if event.type == pygame.KEYDOWN:
 			if event.key == pygame.K_LEFT:
 				pspeed = [pspeed[0] - 5, pspeed[1]]
+		if event.type == pygame.KEYUP:
+			if event.key == pygame.K_LEFT:
+				pspeed = [0,0]
 	if (pygame.time.get_ticks() - lasttime > 10):
 		ballrect = ballrect.move(bspeed)
 		lasttime = pygame.time.get_ticks()
@@ -40,14 +52,17 @@ while True:
 	if (pygame.time.get_ticks() - lasttime2 > 10):
 		paddlerect = paddlerect.move(pspeed)
 		lasttime2 = pygame.time.get_ticks()
-
+		
 
 	if ballrect.left < 0 or ballrect.right > width:
 		bspeed[0] = -bspeed[0]
-	if ballrect.top < 0 or ballrect.bottom > height:
+	if ballrect.bottom > height:
 		bspeed[1] = -bspeed[1]
+	if ballrect.colliderect(paddlerect):
+		bspeed[1] = -bspeed[1]
+	
 
 	screen.fill(white)
-	screen.blit(ball,ballrect)
 	screen.blit(paddle,paddlerect)
+	screen.blit(ball, ballrect)
 	pygame.display.flip()
